@@ -9,7 +9,7 @@ function selectOption(option) {
             displayCatHeart(); // Display the cat-heart.gif
         });
     } else if (option === 'no') {
-        moveButton(); // Move the "No" button
+        // This is now handled by mouseover in the HTML directly
     } else {
         // If neither "Yes" nor "No" was clicked, show an alert message
         alert('Invalid option!');
@@ -57,7 +57,7 @@ function displayCatHeart() {
     };
 }
 
-// Function to move the "No" button randomly
+// Function to move the "No" button randomly on mouseover
 function moveButton() {
     var noButton = document.getElementById('no-button');
     var x = Math.random() * (window.innerWidth - noButton.offsetWidth);
@@ -66,6 +66,14 @@ function moveButton() {
     noButton.style.left = `${x}px`;
     noButton.style.top = `${y}px`;
 }
+
+// Add the mouseover event listener to the "No" button
+document.addEventListener('DOMContentLoaded', function() {
+    var noButton = document.getElementById('no-button');
+    if (noButton) {
+        noButton.addEventListener('mouseover', moveButton);
+    }
+});
 
 // Display the cat.gif initially
 displayCat();
